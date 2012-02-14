@@ -9,6 +9,15 @@ class BooksController < ApplicationController
       format.json { render json: @books }
     end
   end
+  
+  def search
+    @books = Book.find(param[:query])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @books }
+    end
+  end
 
   # GET /books/1
   # GET /books/1.json
