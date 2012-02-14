@@ -1,4 +1,5 @@
 BookCodes::Application.routes.draw do
+  match "/search/:query", to: "books#search"
   resources :books
 
   resources :authors

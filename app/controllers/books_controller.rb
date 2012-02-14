@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   end
   
   def search
-    @books = Book.find(param[:query])
+    @books = Book.name_like(params[:query])
 
     respond_to do |format|
       format.html
@@ -49,7 +49,8 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(params[:book])
+    @author = Author.find(params[:author_id])
+    @book = @author.books.new(params[:book])
 
     respond_to do |format|
       if @book.save

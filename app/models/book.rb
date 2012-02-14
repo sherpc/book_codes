@@ -5,4 +5,8 @@ class Book < ActiveRecord::Base
   validates :name, :presence => true, :length => { maximum: 300 }
   validates :code, :presence => true, :length => { maximum: 300 }
   validates :author_id, :presence => true
+
+  def self.name_like(name)
+    where("name LIKE ?", "%#{name}%")
+  end
 end
